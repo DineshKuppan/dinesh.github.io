@@ -9,25 +9,34 @@ Here's a quick overview of some key areas I've been focusing on:
 
 #### Programming Languages:
 
-*Java:* Core Java concepts, object-oriented programming, data structures, and algorithms.
-*Python:* Data analysis, web scraping, automation scripts, and machine learning basics.
-*JavaScript:* Frontend development with frameworks like React, and backend with Node.js.
+***Java:*** Core Java concepts, object-oriented programming, data structures, and algorithms.
+
+***Python:*** Data analysis, web scraping, automation scripts, and machine learning basics.
+
+***JavaScript:*** Frontend development with frameworks like React, and backend with Node.js.
+
 #### Web Development:
 
-*Frontend:* HTML, CSS, JavaScript, and frameworks like React.
-*Backend:* Node.js, Express, RESTful API design, and working with databases like MongoDB and SQL.
-*Full Stack Projects:* Building complete web applications from scratch.
+***Frontend:*** HTML, CSS, JavaScript, and frameworks like React.
+
+***Backend:*** Node.js, Express, RESTful API design, and working with databases like MongoDB and SQL.
+
+***Full Stack Projects:*** Building complete web applications from scratch.
 
 #### Data Structures and Algorithms:
 
 Mastery of fundamental data structures (arrays, linked lists, trees, graphs, stacks, queues, hash tables).
+
 Problem-solving with algorithms (sorting, searching, dynamic programming, greedy algorithms).
+
 Algorithmic complexity analysis (Big O notation).
+
 #### DevOps and Tools:
 
 Version control with Git and GitHub.
 CI/CD pipelines with GitHub Actions.
 Containerization with Docker.
+
 #### Software Development Practices:
 
 Writing clean, maintainable code with best practices.
