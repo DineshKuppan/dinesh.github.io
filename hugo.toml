@@ -1,0 +1,49 @@
+baseURL = 'https://dineshkuppan.dev/'
+languageCode = 'en-us'
+title = '❯ Dinesh Blog'
+theme = "archie"
+
+copyright = "© DineshKuppan"
+pygmentsstyle = "monokai"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+  
+[params]
+	mode="auto"
+	useCDN=false
+	favicon="/favicon.ico"
+
+[[params.social]]
+name = "GitHub"
+icon = "github"
+url = "https://github.com/DineshKuppan"
+
+
+[[params.social]]
+name = "LinkedIn"
+icon = "linkedin"
+url = "https://www.linkedin.com/in/dineshkumar-kuppan"
+
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "Posts"
+url = "/posts"
+weight = 2
+
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 3
+
+[[menu.main]]
+name = "Tags"
+url = "/tags"
+weight = 4
+
+[author]
+  name = "DineshKuppan"
+  homepage = "https://github.com/DineshKuppan"

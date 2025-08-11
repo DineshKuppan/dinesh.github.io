@@ -1,4 +1,4 @@
-# Welcome to My Learnings GitHub Page! - [learnings.github.io](https://dineshkuppan.github.io/learnings.github.io/)
+# Welcome to My Personal Blog! - [dinesh.github.io](https://dineshkuppan.github.io/dinesh.github.io/)
 
 About Me - [DineshKuppan](https://github.com/DineshKuppan)
 
