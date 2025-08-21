@@ -43,11 +43,12 @@ jobs:
           submodules: recursive
           fetch-depth: 0  # Fetch all history for .GitInfo and .Lastmod
 
-      - name: 🏗️ Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: ${{ env.HUGO_VERSION }}
-          extended: true
+      - name: 🏗️ Install Hugo CLI
+        run: |
+          echo "Installing Hugo CLI version ${{ env.HUGO_VERSION }}"
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${{ env.HUGO_VERSION }}/hugo_extended_${{ env.HUGO_VERSION }}_linux-amd64.deb
+          sudo dpkg -i ${{ runner.temp }}/hugo.deb
+          hugo version
 
       - name: 🎨 Setup Node.js (for PostCSS/Tailwind if needed)
         uses: actions/setup-node@v4
@@ -65,6 +66,12 @@ jobs:
         uses: actions/configure-pages@v5
         if: github.ref == 'refs/heads/main'
 
+      - name: 🧹 Clean public directory
+        run: |
+          echo "Cleaning any existing public directory..."
+          rm -rf public/
+          mkdir -p public/
+
       - name: 🔨 Build with Hugo (Production)
         if: github.ref == 'refs/heads/main'
         env:
@@ -72,10 +79,14 @@ jobs:
           HUGO_ENVIRONMENT: production
           TZ: America/Los_Angeles
         run: |
+          echo "Building Hugo site for production..."
           hugo \
             --gc \
             --minify \
+            --cleanDestinationDir \
             --baseURL "https://dineshkuppan.dev/"
+          echo "Build completed. Public directory contents:"
+          ls -la public/
 
       - name: 🔨 Build with Hugo (Preview)
         if: github.ref != 'refs/heads/main'
@@ -83,10 +94,14 @@ jobs:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: development
         run: |
+          echo "Building Hugo site for preview..."
           hugo \
             --gc \
             --buildDrafts \
-            --buildFuture
+            --buildFuture \
+            --cleanDestinationDir
+          echo "Preview build completed. Public directory contents:"
+          ls -la public/
 
       - name: 📤 Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -96,12 +111,56 @@ jobs:
 
       - name: 🧪 Test built site
         run: |
-          echo "Testing built site structure..."
-          ls -la public/
-          echo "CNAME file content:"
-          cat public/CNAME || echo "No CNAME file found"
-          echo "Index file exists:"
-          test -f public/index.html && echo "✅ index.html found" || echo "❌ index.html missing"
+          echo "🔍 Testing built site structure..."
+          echo "📁 Public directory structure:"
+          find public/ -type f -name "*.html" | head -10
+          echo ""
+          echo "📄 CNAME file verification:"
+          if [ -f public/CNAME ]; then
+            echo "✅ CNAME file found"
+            echo "📝 CNAME content: $(cat public/CNAME)"
+          else
+            echo "❌ CNAME file missing"
+          fi
+          echo ""
+          echo "🏠 Index file verification:"
+          if [ -f public/index.html ]; then
+            echo "✅ index.html found"
+            echo "📊 Size: $(wc -c < public/index.html) bytes"
+          else
+            echo "❌ index.html missing"
+            exit 1
+          fi
+          echo ""
+          echo "📈 Site statistics:"
+          echo "🗂️  Total files: $(find public/ -type f | wc -l)"
+          echo "📄 HTML files: $(find public/ -name "*.html" | wc -l)"
+          echo "🎨 CSS files: $(find public/ -name "*.css" | wc -l)"
+          echo "⚡ JS files: $(find public/ -name "*.js" | wc -l)"
+
+      - name: 🌐 Verify custom domain configuration
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "🔍 Verifying custom domain setup..."
+          if [ -f static/CNAME ]; then
+            echo "✅ Source CNAME file exists in static/"
+            echo "📝 Source content: $(cat static/CNAME)"
+          fi
+          if [ -f public/CNAME ]; then
+            echo "✅ CNAME file copied to public/"
+            echo "📝 Public content: $(cat public/CNAME)"
+            if [ "$(cat public/CNAME)" = "dineshkuppan.dev" ]; then
+              echo "✅ Custom domain correctly configured"
+            else
+              echo "❌ Custom domain misconfigured"
+              exit 1
+            fi
+          else
+            echo "❌ CNAME file not found in public directory"
+            echo "🔧 Creating CNAME file..."
+            echo "dineshkuppan.dev" > public/CNAME
+            echo "✅ CNAME file created"
+          fi
 
   # Deployment job
   deploy:
