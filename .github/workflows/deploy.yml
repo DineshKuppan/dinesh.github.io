@@ -1,0 +1,42 @@
+name: Deploy static site to Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # If your site files are in /public, set that; else use .
+      - name: Prepare artifact
+        run: |
+          mkdir -p ./_site
+          cp -R public/* ./_site
+
+      # Add your custom domain into the artifact so Pages knows it
+      # Replace with your domain (e.g., example.com or www.example.com)
+      - name: Add CNAME
+        run: echo "dineshkuppan.dev" > ./_site/CNAME
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
