@@ -1,4 +1,4 @@
-name: Deploy static site to Pages
+name: Build Hugo site and Deploy to Pages
 
 on:
   push:
@@ -15,28 +15,98 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.128.0
     steps:
-      - name: Checkout
+      - name: 📦 Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
 
-      # If your site files are in /public, set that; else use .
-      - name: Prepare artifact
+      - name: 🏗️ Install Hugo CLI
         run: |
-          mkdir -p ./_site
-          cp -R public/* ./_site
+          echo "Installing Hugo CLI version ${{ env.HUGO_VERSION }}"
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${{ env.HUGO_VERSION }}/hugo_extended_${{ env.HUGO_VERSION }}_linux-amd64.deb
+          sudo dpkg -i ${{ runner.temp }}/hugo.deb
+          hugo version
 
-      # Add your custom domain into the artifact so Pages knows it
-      # Replace with your domain (e.g., example.com or www.example.com)
-      - name: Add CNAME
-        run: echo "dineshkuppan.dev" > ./_site/CNAME
+      - name: 🎨 Setup Node.js (for dependencies if needed)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+        if: hashFiles('package-lock.json') != ''
 
-      - name: Upload Pages artifact
+      - name: 📦 Install Node.js dependencies
+        run: npm ci
+        if: hashFiles('package-lock.json') != ''
+
+      - name: 🧹 Clean public directory
+        run: |
+          echo "Cleaning any existing public directory..."
+          rm -rf public/
+          mkdir -p public/
+
+      - name: 🔨 Build with Hugo
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_ENVIRONMENT: production
+          TZ: America/Los_Angeles
+        run: |
+          echo "Building Hugo site for production..."
+          hugo \
+            --gc \
+            --minify \
+            --cleanDestinationDir \
+            --baseURL "https://dineshkuppan.dev/"
+          echo "Build completed. Public directory contents:"
+          ls -la public/
+
+      - name: 🧪 Test built site
+        run: |
+          echo "🔍 Testing built site structure..."
+          echo "📁 Public directory structure:"
+          find public/ -type f -name "*.html" | head -10
+          echo ""
+          echo "📄 CNAME file verification:"
+          if [ -f public/CNAME ]; then
+            echo "✅ CNAME file found"
+            echo "📝 CNAME content: $(cat public/CNAME)"
+          else
+            echo "❌ CNAME file missing"
+          fi
+          echo ""
+          echo "🏠 Index file verification:"
+          if [ -f public/index.html ]; then
+            echo "✅ index.html found"
+            echo "📊 Size: $(wc -c < public/index.html) bytes"
+          else
+            echo "❌ index.html missing"
+            exit 1
+          fi
+
+      - name: 🌐 Ensure CNAME file exists
+        run: |
+          if [ ! -f public/CNAME ]; then
+            echo "Creating CNAME file..."
+            echo "dineshkuppan.dev" > public/CNAME
+          fi
+          echo "Final CNAME content: $(cat public/CNAME)"
+
+      - name: 📤 Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./_site
+          path: ./public
 
-      - name: Deploy to GitHub Pages
+      - name: 🚀 Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: 🎉 Deployment success notification
+        run: |
+          echo "🎉 Site successfully deployed!"
+          echo "🌐 URL: https://dineshkuppan.dev"
+          echo "📊 Deployment URL: ${{ steps.deployment.outputs.page_url }}"
