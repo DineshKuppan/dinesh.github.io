@@ -23,6 +23,8 @@ Let’s break this down.
 
 ***
 
+![AI vs Gen-AI](../../../../../img/AI_vs_GenAI.png "AI vs Gen-AI")
+
 ## Traditional AI: Predict, Classify, Optimize  
 Traditional AI is usually *deterministic within probabilistic bounds*: you feed it structured data, and it predicts, classifies, or optimizes based on patterns it has learned.  
 
