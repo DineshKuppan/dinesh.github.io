@@ -2,17 +2,18 @@
 title: "AI Use Case vs GenAI Use Case: How We Draw the Line"
 date: 2025-08-23T16:29:00+05:30
 description: "Explore how engineering teams distinguish between traditional AI use cases and the emerging wave of Generative AI use cases, with real-world examples and practical categorization tips from hands-on system design debates."
+image: /img/AI_vs_GenAI.png
 tags: [ai, generative ai, machine learning, engineering, guide]
 ---
 
-##AI vs GenAI Debate
+## AI vs GenAI Debate
 
 As an engineering leader working on advanced AI and distributed systems, I’ve witnessed firsthand how confusing the boundaries can be between traditional AI and the emerging wave of Generative AI.
 
 Recently, during our team’s architecture session, we tackled a deceptively simple question: how do we categorize AI and GenAI use cases in our products? The line quickly blurred. Structured tasks like anomaly detection felt solidly AI; anything generating natural language or context seemed more GenAI. Chatbots, code suggestions, and compliance reports sparked debate—are they enhanced AI or truly generative?
 In the end, we agreed clear categories are critical for design and scaling decisions. This blog distills our team’s debate, outlining how we differentiate—and sometimes blend—AI and GenAI use cases in modern engineering.
 
-##Traditional AI Use Cases vs Generative AI Use Cases – What Developers Should Know
+## Traditional AI Use Cases vs Generative AI Use Cases – What Developers Should Know
 
 Artificial Intelligence (AI) has coexisted with modern software engineering for well over a decade. From fraud detection to recommendation systems, **AI use cases** have become embedded in nearly every digital product. But with the rise of **Generative AI (Gen AI)**, we’re seeing a shift—where AI doesn’t just analyze or predict, but actually *creates*.  
 
@@ -81,6 +82,8 @@ Generative AI takes things a step further by actually **producing new outputs** 
 | **Developer Example**  | Test case pass/fail prediction        | Auto-generate new regression tests from specs |
 
 ***
+
+![AI vs Gen-AI Use Case](../../../../../static/img/AI_vs_GenAI_Use_case.png "AI vs Gen-AI Use Case & Purpose")
 
 ## 
 ## Closing Thoughts  
