@@ -15,11 +15,11 @@ In the end, we agreed clear categories are critical for design and scaling decis
 
 ## Traditional AI Use Cases vs Generative AI Use Cases – What Developers Should Know
 
-Artificial Intelligence (AI) has coexisted with modern software engineering for well over a decade. From fraud detection to recommendation systems, **AI use cases** have become embedded in nearly every digital product. But with the rise of **Generative AI (Gen AI)**, we’re seeing a shift—where AI doesn’t just analyze or predict, but actually *creates*.  
+**Artificial Intelligence (AI)** has coexisted with modern software engineering for well over a decade. From fraud detection to recommendation systems, **AI use cases** have become embedded in nearly every digital product. But with the rise of **Generative AI (Gen AI)**, we’re seeing a shift—where AI doesn’t just analyze or predict, but actually *creates*.  
 
 For developers and architects, the question is often: *When should I use traditional AI and when should I lean on Generative AI?*  
 
-Let’s break this down.  
+Let’s break this down.
 
 ***
 
@@ -87,9 +87,8 @@ Generative AI takes things a step further by actually **producing new outputs** 
 
 ![AI vs Gen-AI Use Case](../../../../../img/AI_vs_GenAI_Use_case.png "AI vs Gen-AI Use Case & Purpose")
 
-## 
 ## Closing Thoughts  
-As engineers, we often oversimplify by thinking “GenAI is replacing AI.” In reality, GenAI is just another layer — it doesn’t replace predictive or classification AI but rather **extends it into creation and synthesis**.  
+As engineers, we often oversimplify by thinking **“GenAI is replacing AI.”** In reality, GenAI is just another layer — it doesn’t replace predictive or classification AI but rather **extends it into creation and synthesis**.  
 
 The most powerful systems will emerge from **hybrid architectures**, where traditional AI ensures rigor and correctness, while GenAI drives usability and human alignment.  
 
