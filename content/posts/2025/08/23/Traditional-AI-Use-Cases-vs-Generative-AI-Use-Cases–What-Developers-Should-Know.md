@@ -83,7 +83,7 @@ Generative AI takes things a step further by actually **producing new outputs** 
 
 ***
 
-![AI vs Gen-AI Use Case](../../../../../static/img/AI_vs_GenAI_Use_case.png "AI vs Gen-AI Use Case & Purpose")
+![AI vs Gen-AI Use Case](../../../../../img/AI_vs_GenAI_Use_case.png "AI vs Gen-AI Use Case & Purpose")
 
 ## 
 ## Closing Thoughts  
