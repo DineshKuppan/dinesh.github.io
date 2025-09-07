@@ -52,3 +52,5 @@ yarn-debug.log
 *.lock
 
 public/
+
+resources/_gen
