@@ -1,12 +1,12 @@
-+++
-title = "About"
-description = "Learn more about DineshKuppan - passionate technologist, developer, and lifelong learner"
-date = "2025-01-07"
-aliases = ["about-us","about-dinesh","contact"]
-author = "DineshKuppan"
-+++
+---
+title: "About Myself"
+description: "Learn more about DineshKuppan - passionate technologist, developer, and lifelong learner"
+date: "2025-01-07"
+aliases: ["about-us","about-dinesh","contact"]
+author: "DineshKuppan"
+---
 
-## Hello! 👋
+## Hello! Dinesh here 👋
 
 I'm passionate about learning and exploring various domains in technology and computer science. This blog is a collection of my projects, code snippets, and notes on different topics I've been diving into. It serves as both a portfolio and a learning journal, showcasing my journey as I expand my skills and knowledge.
 

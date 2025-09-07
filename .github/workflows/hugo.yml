@@ -103,6 +103,11 @@ jobs:
           echo "Preview build completed. Public directory contents:"
           ls -la public/
 
+      - name: 🔎 Run Pagefind indexing
+        run: |
+          npm install
+          npx pagefind --site public
+        if: github.ref == 'refs/heads/main'
       - name: 📤 Upload artifact
         uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main'
