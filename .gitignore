@@ -36,6 +36,12 @@ target/
 /logs
 .classpath
 
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+.pnpm-debug.log
+
 #VS Code
 .vscode
 

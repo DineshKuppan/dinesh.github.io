@@ -1,18 +1,14 @@
-<footer>
-  <div style="display:flex">
-    {{- range $index, $key := .Site.Params.Social -}}
-    {{- if hasPrefix $key.icon "simple:" -}}
-    <a class="soc" href="{{ $key.url }}" rel="me" title="{{ $key.name }}"><i class="si si-{{ substr $key.icon 7 }}"></i></a>
+<footer class="footer">
+  <div class="content has-text-centered">
+    {{- if .Site.Params.copyright -}}
+    {{ .Site.Params.copyright }}
     {{- else -}}
-    <a class="soc" href="{{ $key.url }}" rel="me" title="{{ $key.name }}">{{ template "feathericon" (dict "Icon" $key.icon "UseCDN" .Site.Params.useCDN) }}</a>
-    {{- end -}}
-    <a class="border"></a>
-    {{- end -}}
-  </div>
-  <div class="footer-info">
-    {{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . }} | {{ end }}  <a href="https://dineshkuppan.dev">website</a>
+    {{ .Site.Copyright }}
+    {{ end }}
+    </p>
   </div>
 </footer>
-{{ if not hugo.IsServer }}
-{{ template "_internal/google_analytics.html" . }}
+{{ if .Site.Params.pwa }}
+{{ partial "pwa.html" . }}
 {{ end }}
+{{ template "_internal/google_analytics.html" . }}
