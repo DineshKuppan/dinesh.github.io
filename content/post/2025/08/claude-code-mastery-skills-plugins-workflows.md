@@ -1,6 +1,6 @@
 ---
 title: "Claude Code Mastery: Skills, Plugins, Daily Staff-Engineer Workflows"
-date: 2026-03-22T09:00:00+05:30
+date: 2025-08-10T09:00:00+05:30
 description: "Using Claude Code as your development partner. Skills, custom plugins, loops, and shipping faster."
 tags: [claude-code, developer-tools, productivity, automation, ai-workflow]
 categories: [Tools, Productivity]
@@ -262,4 +262,4 @@ Most engineers don't use Claude Code beyond code generation. They're missing the
 
 If you spend more than 30 minutes on a repetitive task this week, ask: "Could Claude Code do this in a loop?" Probably yes. And you'll save hours.
 
-**Next in this series:** [Build AI Simulators: Simulation-Assisted AI vs AI-Assisted Simulation](/post/2026/03/build-ai-simulators-simulation-assisted-ai/)
+**Next in this series:** [Build AI Simulators: Simulation-Assisted AI vs AI-Assisted Simulation](/post/2025/07/build-ai-simulators-simulation-assisted-ai/)

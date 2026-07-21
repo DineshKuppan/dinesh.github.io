@@ -1,6 +1,6 @@
 ---
 title: "RAG vs GraphRAG vs ADK/A2A/MCP: Architecture Choices for Agentic Systems"
-date: 2026-03-14T09:00:00+05:30
+date: 2025-08-02T09:00:00+05:30
 description: "How to ground LLMs in your data. When to use RAG, when to use graphs, when to reach for agents and tool protocols."
 tags: [rag, graphrag, agents, architecture, llm-grounding]
 categories: [Architecture, AI]
@@ -193,4 +193,4 @@ For your next system, start with RAG (fastest to implement). Then ask: "Does my 
 
 Most teams get this wrong by assuming RAG is enough and wondering why their LLM gets confused. It's not confused; it's just not seeing the relationships that matter.
 
-**Next in this series:** [GenAI in the Enterprise SaaS Ecosystem: A Staff Engineer's Integration Playbook](/post/2026/03/genai-enterprise-saas-integration-playbook/)
+**Next in this series:** [GenAI in the Enterprise SaaS Ecosystem: A Staff Engineer's Integration Playbook](/post/2025/07/genai-enterprise-saas-integration-playbook/)

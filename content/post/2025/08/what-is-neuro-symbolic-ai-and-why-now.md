@@ -1,6 +1,6 @@
 ---
 title: "What Is Neuro-Symbolic AI, and Why Now"
-date: 2026-03-30T09:00:00+05:30
+date: 2025-08-18T09:00:00+05:30
 description: "The convergence of neural networks and symbolic reasoning. Why pure LLMs hit a ceiling and how to combine both."
 tags: [neuro-symbolic, reasoning, knowledge-graphs, ai-architecture]
 categories: [AI, Advanced]
@@ -239,4 +239,4 @@ Together they can solve problems neither can alone.
 
 If you're building something that needs both accuracy and explanation, neuro-symbolic is the architecture worth learning.
 
-**Next in this series:** [Knowledge Graphs as the Symbolic Backbone](/post/2026/04/knowledge-graphs-as-symbolic-backbone/)
+**Next in this series:** [Knowledge Graphs as the Symbolic Backbone](/post/2025/08/knowledge-graphs-as-symbolic-backbone/)

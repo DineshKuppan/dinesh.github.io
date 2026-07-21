@@ -1,6 +1,6 @@
 ---
 title: "Knowledge Graphs as the Symbolic Backbone: Where Neo4j Meets LLMs"
-date: 2026-04-03T09:00:00+05:30
+date: 2025-08-22T09:00:00+05:30
 description: "Building knowledge graphs for AI reasoning. From schema design to querying with LLMs."
 tags: [knowledge-graphs, neo4j, graph-databases, llm-reasoning]
 categories: [Architecture, Databases]
@@ -335,4 +335,4 @@ The cost of adding a graph: moderate setup, worth it for accuracy and explainabi
 
 The cost of not having one: your LLM hallucinates relationships.
 
-**Next in this series:** [Agentic KnowledgeGraph Engineering 101](/post/2026/04/agentic-knowledgegraph-engineering-101/)
+**Next in this series:** [Agentic KnowledgeGraph Engineering 101](/post/2025/08/agentic-knowledgegraph-engineering-101/)

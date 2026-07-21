@@ -1,6 +1,6 @@
 ---
 title: "GenAI in the Enterprise SaaS Ecosystem: A Staff Engineer's Integration Playbook"
-date: 2026-03-18T09:00:00+05:30
+date: 2025-08-06T09:00:00+05:30
 description: "How to ship AI features without burning infrastructure budget. Models, guardrails, costs, and the patterns that actually work at scale."
 tags: [saas, enterprise, genai, infrastructure, patterns]
 categories: [Enterprise, Architecture]
@@ -244,4 +244,4 @@ GenAI in SaaS is viable if you optimize for cost from day one. This means:
 
 Don't just plug in the best model. Build the routing layer first.
 
-**Next in this series:** [Claude Code Mastery: Skills, Plugins, Daily Staff-Engineer Workflows](/post/2026/03/claude-code-mastery-skills-plugins-workflows/)
+**Next in this series:** [Claude Code Mastery: Skills, Plugins, Daily Staff-Engineer Workflows](/post/2025/07/claude-code-mastery-skills-plugins-workflows/)

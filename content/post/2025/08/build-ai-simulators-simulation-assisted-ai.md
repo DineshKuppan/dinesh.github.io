@@ -1,6 +1,6 @@
 ---
 title: "Build AI Simulators: Simulation-Assisted AI vs AI-Assisted Simulation"
-date: 2026-03-26T09:00:00+05:30
+date: 2025-08-14T09:00:00+05:30
 description: "When reality is too expensive to test. How to verify AI reasoning and decision-making in simulation."
 tags: [simulation, ai-testing, verification, ai-agents]
 categories: [Testing, AI]
@@ -263,4 +263,4 @@ Then you can deploy with confidence.
 
 Most teams skip this step and learn it the hard way (expensive mistake in production). Don't be that team.
 
-**Next in this series:** [What Is Neuro-Symbolic AI, and Why Now](/post/2026/03/what-is-neuro-symbolic-ai-and-why-now/)
+**Next in this series:** [What Is Neuro-Symbolic AI, and Why Now](/post/2025/07/what-is-neuro-symbolic-ai-and-why-now/)

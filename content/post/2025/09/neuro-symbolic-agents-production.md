@@ -1,6 +1,6 @@
 ---
 title: "Neuro-Symbolic Agents in Production: Constraint Solvers, Rule Engines, and LLM Planners"
-date: 2026-04-15T09:00:00+05:30
+date: 2025-09-03T09:00:00+05:30
 description: "Shipping neuro-symbolic systems at scale. Deployment patterns, monitoring, and handling failures."
 tags: [production, deployment, monitoring, neuro-symbolic, patterns]
 categories: [Production, Architecture]
@@ -369,4 +369,4 @@ Build for the common case (fast path), optimize later.
 
 Most of your queries will be simple. Handle those in 200ms. For the 5% that are complex, use the full neuro-symbolic stack and batch them.
 
-**Final in this series:** [The Road Ahead: Neuro-Symbolic AI for Enterprise Reasoning Systems](/post/2026/04/neuro-symbolic-ai-enterprise-roadmap/)
+**Final in this series:** [The Road Ahead: Neuro-Symbolic AI for Enterprise Reasoning Systems](/post/2025/09/neuro-symbolic-ai-enterprise-roadmap/)

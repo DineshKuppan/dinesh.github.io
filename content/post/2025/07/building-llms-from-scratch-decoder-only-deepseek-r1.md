@@ -1,6 +1,6 @@
 ---
 title: "Building LLMs from Scratch: Decoder-Only Transformers & DeepSeek R1"
-date: 2026-03-06T09:00:00+05:30
+date: 2025-07-25T09:00:00+05:30
 description: "Why decoder-only transformers dominate GenAI. Architecture decisions that let one model do a thousand tasks."
 tags: [llm, transformers, architecture, deepseek, ai]
 categories: [AI, Architecture]
@@ -151,4 +151,4 @@ DeepSeek R1 showed that explicit reasoning during generation can be cheaper than
 
 Either way, the architecture is decoder-only. Everything else is optimization.
 
-**Next in this series:** [My Local AI Research Stack: Ollama + Obsidian + Perplexity](/post/2026/03/my-local-ai-research-stack-ollama-obsidian-perplexity/)
+**Next in this series:** [My Local AI Research Stack: Ollama + Obsidian + Perplexity](/post/2025/07/my-local-ai-research-stack-ollama-obsidian-perplexity/)

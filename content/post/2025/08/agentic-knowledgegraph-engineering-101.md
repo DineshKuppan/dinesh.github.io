@@ -1,6 +1,6 @@
 ---
 title: "Agentic KnowledgeGraph Engineering 101: From Schema to Reasoning"
-date: 2026-04-07T09:00:00+05:30
+date: 2025-08-26T09:00:00+05:30
 description: "Building AI agents that reason over knowledge graphs. Concrete patterns for agentic decision-making."
 tags: [agents, knowledge-graphs, agentic-ai, reasoning]
 categories: [Architecture, Advanced]
@@ -370,4 +370,4 @@ Start simple:
 
 Then iterate. Add relationships as you discover they matter. Update your schema as your domain evolves.
 
-**Next in this series:** [Reasoning Engines: Logic Programming + LLM Inference](/post/2026/04/reasoning-engines-logic-programming-llm/)
+**Next in this series:** [Reasoning Engines: Logic Programming + LLM Inference](/post/2025/09/reasoning-engines-logic-programming-llm/)

@@ -1,6 +1,6 @@
 ---
 title: "The Road Ahead: Neuro-Symbolic AI for Enterprise Reasoning Systems"
-date: 2026-04-19T09:00:00+05:30
+date: 2025-09-07T09:00:00+05:30
 description: "Enterprise adoption of neuro-symbolic AI. Case studies, challenges, and what's next."
 tags: [enterprise, neuro-symbolic, future, ai-systems, strategy]
 categories: [Enterprise, Future]
@@ -326,4 +326,4 @@ Build neuro-symbolic systems. Your enterprise will be safer, faster, and smarter
 
 And if you're stuck on a hard problem along the way, remember: neuro-symbolic (statistical reasoning + formal logic) is almost always the right answer.
 
-**Back to the beginning:** [AI → GenAI: The Real Shift](/post/2026/03/ai-to-genai-the-real-shift/)
+**Back to the beginning:** [AI → GenAI: The Real Shift](/post/2025/07/ai-to-genai-the-real-shift/)

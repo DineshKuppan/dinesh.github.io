@@ -1,6 +1,6 @@
 ---
 title: "My Local AI Research Stack: Ollama + Obsidian + Perplexity"
-date: 2026-03-10T09:00:00+05:30
+date: 2025-07-29T09:00:00+05:30
 description: "Running LLMs locally without cloud bills. Stack for knowledge management, research, and AI-assisted learning."
 tags: [ollama, local-llm, productivity, research-tools, ai]
 categories: [Tools, Productivity]
@@ -183,4 +183,4 @@ Ollama + Obsidian + Perplexity gives you a system that's responsive, private, an
 
 And you're building the research stack for the next post in this series: understanding how to actually ground these models in your knowledge.
 
-**Next in this series:** [RAG vs GraphRAG vs ADK/A2A/MCP: Architecture Choices for Agentic Systems](/post/2026/03/rag-vs-graphrag-adk-a2a-mcp/)
+**Next in this series:** [RAG vs GraphRAG vs ADK/A2A/MCP: Architecture Choices for Agentic Systems](/post/2025/07/rag-vs-graphrag-adk-a2a-mcp/)

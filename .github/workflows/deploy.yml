@@ -61,9 +61,7 @@ jobs:
             --gc \
             --minify \
             --cleanDestinationDir \
-            --baseURL "https://dineshkuppan.dev/" \
-            --buildFuture \
-            --buildExpired
+            --baseURL "https://dineshkuppan.dev/"
           echo "Build completed."
 
       - name: 🧪 Test built site

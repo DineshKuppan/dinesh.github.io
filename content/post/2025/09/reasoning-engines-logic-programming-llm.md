@@ -1,6 +1,6 @@
 ---
 title: "Reasoning Engines: Combining Logic Programming (Prolog/Datalog) with LLM Inference"
-date: 2026-04-11T09:00:00+05:30
+date: 2025-08-30T09:00:00+05:30
 description: "When LLMs aren't enough, add formal logic. Hybrid reasoning for problems that need provable correctness."
 tags: [reasoning, prolog, datalog, logic-programming, formal-verification]
 categories: [Advanced, Architecture]
@@ -367,4 +367,4 @@ Logic engines aren't replacements for LLMs. They're complements. Use them for:
 
 LLMs are great at reasoning. Logic engines are great at verification. Together, they're stronger than either alone.
 
-**Next in this series:** [Neuro-Symbolic Agents in Production: Constraint Solvers, Rule Engines, and LLM Planners](/post/2026/04/neuro-symbolic-agents-production/)
+**Next in this series:** [Neuro-Symbolic Agents in Production: Constraint Solvers, Rule Engines, and LLM Planners](/post/2025/09/neuro-symbolic-agents-production/)
