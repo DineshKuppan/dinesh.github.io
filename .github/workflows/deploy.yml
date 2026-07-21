@@ -36,7 +36,7 @@ jobs:
       - name: 🎨 Setup Node.js (for dependencies if needed)
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
           cache: 'npm'
         if: hashFiles('package-lock.json') != ''
 
@@ -78,7 +78,7 @@ jobs:
           echo "Final CNAME content: $(cat public/CNAME)"
 
       - name: 📤 Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./public
 
