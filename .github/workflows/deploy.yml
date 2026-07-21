@@ -62,9 +62,10 @@ jobs:
             --minify \
             --cleanDestinationDir \
             --baseURL "https://dineshkuppan.dev/" \
-            --buildFuture
+            --buildFuture \
+            --clock "2026-05-01T00:00:00Z"
           echo "Build completed. Public directory contents:"
-          ls -la public/
+          ls -la public/post/ | head -20
 
       - name: 🧪 Test built site
         run: |
