@@ -18,7 +18,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.128.0
+      HUGO_VERSION: 0.161.1
     steps:
       - name: 📦 Checkout repository
         uses: actions/checkout@v4
@@ -36,7 +36,7 @@ jobs:
       - name: 🎨 Setup Node.js (for dependencies if needed)
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
         if: hashFiles('package-lock.json') != ''
 
