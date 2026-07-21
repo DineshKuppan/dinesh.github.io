@@ -51,6 +51,4 @@ yarn-debug.log
 .hugo_build.lock
 *.lock
 
-public/
-
 resources/_gen
