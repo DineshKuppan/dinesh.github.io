@@ -68,29 +68,19 @@ jobs:
 
       - name: 🧪 Test built site
         run: |
-          set -o pipefail
           echo "🔍 Testing built site structure..."
-          echo "📁 Public directory structure:"
-          find public/ -type f -name "*.html" 2>/dev/null | head -10 || true
+          echo "📁 Public directory structure (first 10 HTML files):"
+          ls public/**/*.html 2>/dev/null | head -10 || true
           echo ""
-          echo "📄 CNAME file verification:"
-          if [ -f public/CNAME ]; then
-            echo "✅ CNAME file found"
-            echo "📝 CNAME content: $(cat public/CNAME)"
-          else
-            echo "❌ CNAME file missing"
-          fi
-          echo ""
-          echo "🏠 Index file verification:"
+          echo "📄 Verifying index.html:"
           if [ -f public/index.html ]; then
-            echo "✅ index.html found"
-            echo "📊 Size: $(wc -c < public/index.html) bytes"
+            echo "✅ index.html found: $(wc -c < public/index.html) bytes"
           else
-            echo "❌ index.html missing"
+            echo "❌ index.html missing!"
             exit 1
           fi
           echo ""
-          echo "✅ All tests passed!"
+          echo "✅ Build verification complete!"
 
       - name: 🌐 Ensure CNAME file exists
         run: |
