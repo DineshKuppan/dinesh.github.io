@@ -69,18 +69,18 @@ jobs:
       - name: 🧪 Test built site
         run: |
           echo "🔍 Testing built site structure..."
-          echo "📁 Public directory structure (first 10 HTML files):"
-          ls public/**/*.html 2>/dev/null | head -10 || true
           echo ""
-          echo "📄 Verifying index.html:"
+          echo "📄 Verifying index.html exists:"
           if [ -f public/index.html ]; then
-            echo "✅ index.html found: $(wc -c < public/index.html) bytes"
+            echo "✅ index.html found"
+            wc -c public/index.html
           else
-            echo "❌ index.html missing!"
+            echo "❌ ERROR: index.html not found!"
+            ls -la public/ 2>&1 | head -20
             exit 1
           fi
           echo ""
-          echo "✅ Build verification complete!"
+          echo "✅ Build test passed!"
 
       - name: 🌐 Ensure CNAME file exists
         run: |
