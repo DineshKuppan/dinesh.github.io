@@ -77,7 +77,12 @@ jobs:
       - name: 🧪 Test built site
         run: |
           echo "Build verification:"
-          [ -f public/index.html ] && echo "✅ index.html exists" || exit 0
+          if [ -f public/index.html ]; then
+            echo "✅ index.html exists"
+          else
+            echo "⚠️ index.html not found (continuing anyway)"
+          fi
+          exit 0
 
       - name: 🌐 Ensure CNAME file exists
         run: |
