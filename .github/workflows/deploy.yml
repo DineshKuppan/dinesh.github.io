@@ -40,10 +40,18 @@ jobs:
       - name: Build site
         run: cd site && npm run build
 
+      - name: Copy built site to root for deployment
+        run: |
+          mkdir -p public
+          cp -r site/index.html site/catalog.html site/404.html site/about.html site/*.xml site/*.txt site/post public/ 2>/dev/null || true
+          cp site/style.css site/*.js public/ 2>/dev/null || true
+          mkdir -p public/assets
+          cp -r site/assets/* public/assets/ 2>/dev/null || true
+
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: site/
+          path: public/
 
       - name: Deploy to GitHub Pages
         id: deployment
