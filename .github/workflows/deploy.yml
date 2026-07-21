@@ -75,7 +75,7 @@ jobs:
           find public/post/2025 -type d | wc -l
 
       - name: 🧪 Verify build output
-        run: echo "✅ Build output ready for deployment"
+        run: true
         continue-on-error: true
 
       - name: 🌐 Ensure CNAME file exists
