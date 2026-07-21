@@ -74,10 +74,6 @@ jobs:
           ls -la public/index.html
           find public/post/2025 -type d | wc -l
 
-      - name: 🧪 Verify build output
-        run: true
-        continue-on-error: true
-
       - name: 🌐 Ensure CNAME file exists
         run: |
           if [ ! -f public/CNAME ]; then
