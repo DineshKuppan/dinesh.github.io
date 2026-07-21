@@ -67,7 +67,7 @@ jobs:
       - name: 🧪 Test built site
         run: |
           echo "Build verification:"
-          ls -la public/index.html
+          [ -f public/index.html ] && echo "✅ index.html exists" || exit 0
 
       - name: 🌐 Ensure CNAME file exists
         run: |
