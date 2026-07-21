@@ -1,0 +1,21 @@
+{
+  "name": "dineshkuppan-dev",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Dinesh Kuppan's blog - AI Engineering Series",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js && chokidar 'data.js' 'build.js' -c 'npm run build' & http-server . -p 8080 -o",
+    "watch": "chokidar 'data.js' 'build.js' -c 'npm run build'",
+    "serve": "http-server . -p 8080 -o"
+  },
+  "devDependencies": {
+    "chokidar": "^3.5.3",
+    "http-server": "^14.1.1",
+    "unified": "^10.1.2",
+    "remark-parse": "^10.0.2",
+    "remark-html": "^15.0.2",
+    "remark-gfm": "^3.0.1",
+    "sharp": "^0.33.0"
+  }
+}

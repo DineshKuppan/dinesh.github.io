@@ -52,3 +52,19 @@ yarn-debug.log
 *.lock
 
 resources/_gen
+
+# Site generator outputs
+site/index.html
+site/catalog.html
+site/about.html
+site/404.html
+site/glossary.html
+site/sitemap.xml
+site/robots.txt
+site/post/
+
+# Node modules
+site/node_modules/
+
+# Build artifacts
+.cache
