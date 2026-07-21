@@ -68,11 +68,7 @@ jobs:
             --minify \
             --cleanDestinationDir \
             --baseURL "https://dineshkuppan.dev/"
-          echo ""
           echo "✅ Build completed."
-          echo "📊 Output summary:"
-          ls -la public/index.html
-          find public/post/2025 -type d | wc -l
 
       - name: 🌐 Ensure CNAME file exists
         run: |
