@@ -56,13 +56,23 @@ jobs:
           HUGO_ENVIRONMENT: production
           TZ: America/Los_Angeles
         run: |
-          echo "Building Hugo site for production..."
+          echo "📋 Build environment check:"
+          hugo version
+          echo ""
+          echo "📁 Content directory:"
+          ls -la content/post/2025/
+          echo ""
+          echo "🔨 Building Hugo site for production..."
           hugo \
             --gc \
             --minify \
             --cleanDestinationDir \
             --baseURL "https://dineshkuppan.dev/"
-          echo "Build completed."
+          echo ""
+          echo "✅ Build completed."
+          echo "📊 Output summary:"
+          ls -la public/index.html
+          find public/post/2025 -type d | wc -l
 
       - name: 🧪 Test built site
         run: |
