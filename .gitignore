@@ -68,3 +68,4 @@ site/node_modules/
 
 # Build artifacts
 .cachepublic/
+public/
