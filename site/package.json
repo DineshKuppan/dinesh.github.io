@@ -12,10 +12,10 @@
   "devDependencies": {
     "chokidar": "^3.5.3",
     "http-server": "^14.1.1",
-    "unified": "^10.1.2",
-    "remark-parse": "^10.0.2",
-    "remark-html": "^15.0.2",
     "remark-gfm": "^3.0.1",
-    "sharp": "^0.33.0"
+    "remark-html": "^15.0.2",
+    "remark-parse": "^10.0.2",
+    "sharp": "^0.35.3",
+    "unified": "^10.1.2"
   }
 }

@@ -37,7 +37,7 @@ export class CommandPalette {
 
   createUI() {
     const html = `
-      <div class="cmd-palette-overlay" style="display:none">
+      <div class="cmd-palette-overlay">
         <div class="cmd-palette">
           <input type="text" placeholder="Search posts... (Cmd+K)" class="cmd-input" autocomplete="off">
           <div class="cmd-results"></div>
