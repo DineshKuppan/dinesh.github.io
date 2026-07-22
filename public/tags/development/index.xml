@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Development on ❯ DineshKumar's Blog</title><link>https://dineshkuppan.dev/tags/development/</link><description>Recent content in Development on ❯ DineshKumar's Blog</description><generator>Hugo</generator><language>en-us</language><copyright>© 2024-2025 Dinesh Blog. All rights reserved.</copyright><lastBuildDate>Sat, 15 Feb 2025 18:34:27 +0530</lastBuildDate><atom:link href="https://dineshkuppan.dev/tags/development/index.xml" rel="self" type="application/rss+xml"/><item><title>Python Virtual Environment Setup Guides</title><link>https://dineshkuppan.dev/post/2025/02/python-virtual-setup/</link><pubDate>Sat, 15 Feb 2025 18:34:27 +0530</pubDate><guid>https://dineshkuppan.dev/post/2025/02/python-virtual-setup/</guid><description>&lt;h2 id="python-virtual-environment-setup-guides"&gt;Python Virtual Environment Setup Guides&lt;/h2&gt;
+&lt;h3 id="this-page-explains-how-to-create-and-manage-python-virtual-environments-across-linux-unix-macos-and-windows-virtual-environments-isolate-dependencies-for-each-project-preventing-version-conflicts"&gt;This page explains how to create and manage Python virtual environments across &lt;strong&gt;Linux&lt;/strong&gt;, &lt;strong&gt;Unix&lt;/strong&gt;, &lt;strong&gt;macOS&lt;/strong&gt;, and &lt;strong&gt;Windows&lt;/strong&gt;. Virtual environments isolate dependencies for each project, preventing version conflicts.&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h2 id="-navigation"&gt;📌 Navigation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#linux--unix"&gt;Linux &amp;amp; Unix&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#macos"&gt;macOS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#windows"&gt;Windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#additional-notes"&gt;Additional Notes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#summary-table"&gt;Summary Table&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="linux--unix"&gt;Linux &amp;amp; Unix&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Create a Virtual Environment&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Git Setup: First Time Configuration Guide</title><link>https://dineshkuppan.dev/post/2024/12/github_setup/</link><pubDate>Sun, 22 Dec 2024 01:53:00 +0530</pubDate><guid>https://dineshkuppan.dev/post/2024/12/github_setup/</guid><description>&lt;h2 id="git-setup-first-time"&gt;Git Setup (First Time)&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Prerequisite&lt;/strong&gt; - Hope the Git tool is installed on your system, &lt;em&gt;if not please download &amp;amp; install platform specific from&lt;/em&gt; &lt;a href="https://git-scm.com/downloads"&gt;git-scm&lt;/a&gt;.&lt;/p&gt;</description></item></channel></rss>

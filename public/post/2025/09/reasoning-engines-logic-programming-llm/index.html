@@ -1,0 +1,196 @@
+<!doctype html><html lang=en-us><head><script>const t=localStorage.getItem("bulma-theme");t!==null&&document.documentElement.setAttribute("data-theme",t)</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=msapplication-TileColor content="#1d9bf0"><meta name=theme-color content="#1d9bf0"><title>Reasoning Engines: Combining Logic Programming (Prolog/Datalog) with LLM Inference | ❯ DineshKumar's Blog</title><meta property="og:title" content="Reasoning Engines: Combining Logic Programming (Prolog/Datalog) with LLM Inference - ❯ DineshKumar's Blog"><meta property="og:type" content="article"><meta property="article:published_time" content="2025-08-30T09:00:00+08:00"><meta property="article:modified_time" content="2025-08-30T09:00:00+08:00"><meta name=keywords content="HTML,CSS"><meta name=description content="When LLMs aren't enough, add formal logic. Hybrid reasoning for problems that need provable correctness."><meta name=author content="Dinesh Kumar"><link rel=icon href=/favicon.ico sizes=32x32><link rel=icon href=/icon.svg type=image/svg+xml><link rel=apple-touch-icon href=/apple-touch-icon.png><link rel=stylesheet type=text/css href="/css/bulma.min.css"><link rel=stylesheet type=text/css href=/css/hulga.min.css><link rel=manifest href=/manifest.json></head><body><div id=main><section class="hero is-primary shadow-hero"><div class=hero-head><nav class="navbar is-primary" role=navigation aria-label="dropdown navigation"><div class=container><div class=navbar-brand><a class=navbar-item href=/>❯ DineshKumar's Blog
+</a><a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false><span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span></a></div><div class=navbar-menu id=navMenu><div class=navbar-end><div class="navbar-item has-dropdown is-hoverable"><a class=navbar-link href=#><svg width="1em" height="1em" fill="currentColor" viewBox="0 0 32 32"><path d="M16 .5C7.4.5.5 7.4.5 16S7.4 31.5 16 31.5 31.5 24.6 31.5 16 24.6.5 16 .5zm0 28.1V3.4C23 3.4 28.6 9 28.6 16S23 28.6 16 28.6z"/></svg></a><div class=navbar-dropdown id=navDropdown><a class="navbar-item theme-toggle" data-value=light href=#><span class=ticon><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"/></svg>
+</span>Light</a>
+<a class="navbar-item theme-toggle" data-value=dark href=#><span class=ticon><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3h.393a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"/></svg>
+</span>Dark</a>
+<a class="navbar-item theme-toggle" data-value=system href=#><span class=ticon><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a1 1 0 011-1h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1zm4 15h10m-8-4v4m6-4v4"/></svg>
+</span>System</a></div></div><a class=navbar-item href=/ title=index>Home</a>
+<a class=navbar-item href=/categories/ title=categories>Categories</a>
+<a class=navbar-item href=/tags/ title=tags>Tags</a>
+<a class=navbar-item href=/about/ title=about>About</a></div></div></div></nav></div><div class=hero-body><header class="container has-text-centered" data-pagefind-body><h1 class="title post-title is-spaced">Reasoning Engines: Combining Logic Programming (Prolog/Datalog) with LLM Inference</h1><h2 class=subtitle><time>2025/08/30</time> ・<span class="post-cat mr-2">
+<a href=/categories/advanced/>Advanced</a>
+</span><span class="post-cat mr-2"><a href=/categories/architecture/>Architecture</a></span></h2><div><span class="post-tag mr-2 post-cat"><a href=/tags/reasoning/>#Reasoning</a>
+</span><span class="post-tag mr-2 post-cat"><a href=/tags/prolog/>#Prolog</a>
+</span><span class="post-tag mr-2 post-cat"><a href=/tags/datalog/>#Datalog</a>
+</span><span class="post-tag mr-2 post-cat"><a href=/tags/logic-programming/>#Logic-Programming</a>
+</span><span class="post-tag mr-2 post-cat"><a href=/tags/formal-verification/>#Formal-Verification</a></span></div></header></div></section><section class=section><div class=container><div class=columns><div class="column is-7 is-offset-2"><article class=content id=post-content data-pagefind-body><h2 id=your-llm-approved-a-transaction-that-violates-policy>Your LLM approved a transaction that violates policy</h2><p>You deployed an LLM to approve or reject loan applications. It uses RAG to fetch relevant policies, and it&rsquo;s remarkably accurate — 95% approval rate matches your historical baseline.</p><p>Then it approved a loan that violates explicit policy: &ldquo;No loans > $100k without 2 manager approvals.&rdquo; The loan was $150k with 1 approval.</p><p>The LLM had the policy in context. It just didn&rsquo;t apply it correctly.</p><p>This is where logic engines help. They&rsquo;re not smarter than LLMs, they&rsquo;re just deterministic. They can&rsquo;t make judgment calls, but they can enforce rules.</p><h2 id=the-difference-reasoning-vs-verification>The difference: Reasoning vs. Verification</h2><p><strong>Reasoning (what LLMs do):</strong></p><ul><li>Read context</li><li>Make probabilistic judgments</li><li>Return a best guess</li><li>Good at ambiguity, bad at hard rules</li></ul><p><strong>Verification (what logic engines do):</strong></p><ul><li>Take facts and rules</li><li>Derive conclusions mechanically</li><li>Return &ldquo;definitely true&rdquo; or &ldquo;definitely false&rdquo;</li><li>Good at hard rules, bad at ambiguity</li></ul><p>The best systems use both.</p><h2 id=three-types-of-logic-engines>Three types of logic engines</h2><h3 id=1-prolog-logic-programming>1. Prolog (logic programming)</h3><p>Prolog is a language where you define facts and rules, then ask questions.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-prolog data-lang=prolog><span class=line><span class=cl><span class=c1>% Facts</span>
+</span></span><span class=line><span class=cl><span class=nf>manager</span><span class=p>(</span><span class=s>alice</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=nf>manager</span><span class=p>(</span><span class=s>bob</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=nf>loan_approved_by</span><span class=p>(</span><span class=s>loan_123</span><span class=p>,</span> <span class=s>alice</span><span class=p>).</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>% Rules</span>
+</span></span><span class=line><span class=cl><span class=nf>requires_two_approvals</span><span class=p>(</span><span class=nv>Loan</span><span class=p>)</span> <span class=p>:-</span> 
+</span></span><span class=line><span class=cl>    <span class=nf>loan_amount</span><span class=p>(</span><span class=nv>Loan</span><span class=p>,</span> <span class=nv>Amount</span><span class=p>),</span> 
+</span></span><span class=line><span class=cl>    <span class=nv>Amount</span> <span class=o>&gt;</span> <span class=mf>100000.</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>has_required_approvals</span><span class=p>(</span><span class=nv>Loan</span><span class=p>)</span> <span class=p>:-</span> 
+</span></span><span class=line><span class=cl>    <span class=nf>requires_two_approvals</span><span class=p>(</span><span class=nv>Loan</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=nf>loan_approved_by</span><span class=p>(</span><span class=nv>Loan</span><span class=p>,</span> <span class=nv>Manager1</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=nf>loan_approved_by</span><span class=p>(</span><span class=nv>Loan</span><span class=p>,</span> <span class=nv>Manager2</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=nv>Manager1</span> <span class=s>\=</span> <span class=nv>Manager2</span><span class=p>.</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>can_fund</span><span class=p>(</span><span class=nv>Loan</span><span class=p>)</span> <span class=p>:-</span> <span class=nf>has_required_approvals</span><span class=p>(</span><span class=nv>Loan</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=nf>can_fund</span><span class=p>(</span><span class=nv>Loan</span><span class=p>)</span> <span class=p>:-</span> 
+</span></span><span class=line><span class=cl>    <span class=s>\+</span> <span class=nf>requires_two_approvals</span><span class=p>(</span><span class=nv>Loan</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=nf>loan_approved_by</span><span class=p>(</span><span class=nv>Loan</span><span class=p>,</span> <span class=k>_</span><span class=p>).</span>
+</span></span></code></pre></div><p>Now query:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-prolog data-lang=prolog><span class=line><span class=cl><span class=s>?-</span> <span class=nf>can_fund</span><span class=p>(</span><span class=s>loan_123</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=s>false</span><span class=p>.</span>  <span class=c1>% Because only 1 approval, needs 2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=s>?-</span> <span class=nf>can_fund</span><span class=p>(</span><span class=s>loan_456</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=s>true</span><span class=p>.</span>   <span class=c1>% Because &lt; $100k, needs only 1 approval</span>
+</span></span></code></pre></div><p><strong>Strengths:</strong></p><ul><li>Deterministic (Prolog proves whether something is true, doesn&rsquo;t guess)</li><li>Handles negation and complex logic</li><li>Can backtrack and explore all solutions</li></ul><p><strong>Weaknesses:</strong></p><ul><li>You must hand-code all rules</li><li>Doesn&rsquo;t handle ambiguity</li><li>Slow on large datasets (but fast on small ones)</li></ul><h3 id=2-datalog-logic-queries>2. Datalog (logic queries)</h3><p>Datalog is like Prolog but optimized for database queries.</p><pre tabindex=0><code class=language-datalog data-lang=datalog>% Facts (stored in database)
+manager(alice).
+manager(bob).
+loan_approved_by(loan_123, alice).
+
+% Rules
+requires_two_approvals(Loan) :- 
+    loan(Loan, Amount), 
+    Amount &gt; 100000.
+
+has_required_approvals(Loan) :- 
+    requires_two_approvals(Loan),
+    loan_approved_by(Loan, Manager1),
+    loan_approved_by(Loan, Manager2),
+    Manager1 != Manager2.
+
+can_fund(Loan) :- has_required_approvals(Loan).
+can_fund(Loan) :- 
+    loan(Loan, Amount),
+    Amount &lt;= 100000,
+    loan_approved_by(Loan, _).
+
+% Query: Find all fundable loans
+?- can_fund(Loan).
+</code></pre><p>Datalog is to Prolog as SQL is to full logic programming. Simpler, faster, often enough.</p><h3 id=3-constraint-solvers>3. Constraint solvers</h3><p>For optimization problems (&ldquo;find the best assignment&rdquo;).</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># Example: Assign salesreps to customers</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>ortools.linear_solver</span> <span class=kn>import</span> <span class=n>pywraplp</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>solver</span> <span class=o>=</span> <span class=n>pywraplp</span><span class=o>.</span><span class=n>Solver</span><span class=o>.</span><span class=n>CreateSolver</span><span class=p>(</span><span class=s1>&#39;SCIP&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Variables: assignment[rep][customer] = 1 if rep assigned to customer</span>
+</span></span><span class=line><span class=cl><span class=n>assignments</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>rep</span> <span class=ow>in</span> <span class=n>reps</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>customer</span> <span class=ow>in</span> <span class=n>customers</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>assignments</span><span class=p>[(</span><span class=n>rep</span><span class=p>,</span> <span class=n>customer</span><span class=p>)]</span> <span class=o>=</span> <span class=n>solver</span><span class=o>.</span><span class=n>IntVar</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=sa>f</span><span class=s1>&#39;</span><span class=si>{</span><span class=n>rep</span><span class=si>}</span><span class=s1>_</span><span class=si>{</span><span class=n>customer</span><span class=si>}</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Constraints</span>
+</span></span><span class=line><span class=cl><span class=c1># 1. Each customer gets exactly 1 rep</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>customer</span> <span class=ow>in</span> <span class=n>customers</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>solver</span><span class=o>.</span><span class=n>Add</span><span class=p>(</span><span class=nb>sum</span><span class=p>(</span><span class=n>assignments</span><span class=p>[(</span><span class=n>rep</span><span class=p>,</span> <span class=n>customer</span><span class=p>)]</span> <span class=k>for</span> <span class=n>rep</span> <span class=ow>in</span> <span class=n>reps</span><span class=p>)</span> <span class=o>==</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 2. No rep has more than 10 customers</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>rep</span> <span class=ow>in</span> <span class=n>reps</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>solver</span><span class=o>.</span><span class=n>Add</span><span class=p>(</span><span class=nb>sum</span><span class=p>(</span><span class=n>assignments</span><span class=p>[(</span><span class=n>rep</span><span class=p>,</span> <span class=n>customer</span><span class=p>)]</span> <span class=k>for</span> <span class=n>customer</span> <span class=ow>in</span> <span class=n>customers</span><span class=p>)</span> <span class=o>&lt;=</span> <span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 3. Minimize travel distance</span>
+</span></span><span class=line><span class=cl><span class=n>objective</span> <span class=o>=</span> <span class=n>solver</span><span class=o>.</span><span class=n>Objective</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>rep</span> <span class=ow>in</span> <span class=n>reps</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>customer</span> <span class=ow>in</span> <span class=n>customers</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>objective</span><span class=o>.</span><span class=n>SetCoefficient</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=n>assignments</span><span class=p>[(</span><span class=n>rep</span><span class=p>,</span> <span class=n>customer</span><span class=p>)],</span> 
+</span></span><span class=line><span class=cl>            <span class=n>distance</span><span class=p>(</span><span class=n>rep</span><span class=p>,</span> <span class=n>customer</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>objective</span><span class=o>.</span><span class=n>SetMinimization</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Solve</span>
+</span></span><span class=line><span class=cl><span class=n>status</span> <span class=o>=</span> <span class=n>solver</span><span class=o>.</span><span class=n>Solve</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=c1># Get optimal assignment</span>
+</span></span></code></pre></div><h2 id=hybrid-llm--logic-engine>Hybrid: LLM + Logic engine</h2><p><strong>Pattern 1: LLM generates facts, logic engine verifies</strong></p><pre tabindex=0><code>User: &#34;Should we approve this loan?&#34;
+  ↓
+LLM reads application, extracts:
+  - loan_amount: 150000
+  - approvals: [alice]
+  - collateral: house
+  ↓
+Logic engine checks:
+  - requires_two_approvals(150000)? true
+  - has_two_approvals([alice])? false
+  - Result: DENY
+  ↓
+LLM explains: &#34;This loan needs 2 manager approvals, 
+              you have 1. Needs 1 more approval.&#34;
+</code></pre><p><strong>Pattern 2: Logic engine generates options, LLM ranks</strong></p><pre tabindex=0><code>Problem: Assign salesreps to customers (100 possibilities)
+  ↓
+Logic engine generates all valid assignments
+(that satisfy constraints)
+  ↓
+LLM ranks them:
+  - Option A: Low travel distance but unbalanced workload
+  - Option B: Balanced workload, medium travel distance
+  ↓
+LLM recommends: &#34;Option B is better because...&#34;
+</code></pre><h2 id=real-example-compliance-checking>Real example: Compliance checking</h2><p><strong>Setup:</strong></p><ul><li>Rules database: Hundreds of regulatory rules (Prolog/Datalog)</li><li>Facts database: Transaction details, customer info</li><li>LLM: Extracts facts from applications, explains results</li></ul><p><strong>Transaction:</strong> &ldquo;Transfer $500k to new beneficiary in Belarus&rdquo;</p><p><strong>LLM extracts facts:</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-prolog data-lang=prolog><span class=line><span class=cl><span class=nf>transaction_amount</span><span class=p>(</span><span class=s>tx_001</span><span class=p>,</span> <span class=mi>500000</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=nf>transaction_type</span><span class=p>(</span><span class=s>tx_001</span><span class=p>,</span> <span class=s>wire_transfer</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=nf>beneficiary_country</span><span class=p>(</span><span class=s>tx_001</span><span class=p>,</span> <span class=s>belarus</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=nf>customer_aml_status</span><span class=p>(</span><span class=s>tx_001</span><span class=p>,</span> <span class=s>verified</span><span class=p>).</span>
+</span></span></code></pre></div><p><strong>Logic engine runs rules:</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-prolog data-lang=prolog><span class=line><span class=cl><span class=c1>% Rule 1: Large transfers need AML check</span>
+</span></span><span class=line><span class=cl><span class=nf>triggers_aml_check</span><span class=p>(</span><span class=nv>Tx</span><span class=p>)</span> <span class=p>:-</span> <span class=nf>transaction_amount</span><span class=p>(</span><span class=nv>Tx</span><span class=p>,</span> <span class=nv>Amt</span><span class=p>),</span> <span class=nv>Amt</span> <span class=o>&gt;</span> <span class=mf>250000.</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>% Rule 2: High-risk countries need extra scrutiny</span>
+</span></span><span class=line><span class=cl><span class=nf>high_risk_country</span><span class=p>(</span><span class=s>belarus</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=nf>triggers_enhanced_check</span><span class=p>(</span><span class=nv>Tx</span><span class=p>)</span> <span class=p>:-</span> 
+</span></span><span class=line><span class=cl>    <span class=nf>beneficiary_country</span><span class=p>(</span><span class=nv>Tx</span><span class=p>,</span> <span class=nv>Country</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=nf>high_risk_country</span><span class=p>(</span><span class=nv>Country</span><span class=p>).</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>% Rule 3: Enhanced check requires approval</span>
+</span></span><span class=line><span class=cl><span class=nf>requires_approval</span><span class=p>(</span><span class=nv>Tx</span><span class=p>)</span> <span class=p>:-</span> <span class=nf>triggers_enhanced_check</span><span class=p>(</span><span class=nv>Tx</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=nf>requires_approval</span><span class=p>(</span><span class=nv>Tx</span><span class=p>)</span> <span class=p>:-</span> <span class=nf>triggers_aml_check</span><span class=p>(</span><span class=nv>Tx</span><span class=p>).</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>% Query: Is tx_001 compliant?</span>
+</span></span><span class=line><span class=cl><span class=s>?-</span> <span class=nf>compliant</span><span class=p>(</span><span class=s>tx_001</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=s>false</span><span class=p>.</span>  <span class=c1>% Because triggers_enhanced_check AND triggers_aml_check</span>
+</span></span></code></pre></div><p><strong>LLM explains:</strong>
+&ldquo;This transaction is flagged for 2 reasons: 1) Amount ($500k) exceeds AML threshold ($250k), 2) Belarus is high-risk. Requires manager approval before processing.&rdquo;</p><h2 id=when-to-use-logic-engines>When to use logic engines</h2><p><strong>Use logic engines when:</strong></p><ul><li>You need deterministic correctness (compliance, safety)</li><li>Rules are well-defined (policies, regulations, contracts)</li><li>There are hard constraints (budgets, deadlines)</li><li>You can&rsquo;t afford to guess</li></ul><p><strong>Don&rsquo;t use them when:</strong></p><ul><li>The problem is inherently ambiguous</li><li>Rules are vague or frequently change</li><li>You need to learn from data</li></ul><h2 id=building-your-first-logic-engine>Building your first logic engine</h2><p><strong>Step 1: Write facts (your data)</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-prolog data-lang=prolog><span class=line><span class=cl><span class=c1>% Your data</span>
+</span></span><span class=line><span class=cl><span class=nf>customer</span><span class=p>(</span><span class=s>alice</span><span class=p>,</span> <span class=s>verified</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=nf>customer</span><span class=p>(</span><span class=s>bob</span><span class=p>,</span> <span class=s>unverified</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=nf>product</span><span class=p>(</span><span class=s>pro</span><span class=p>,</span> <span class=mi>100</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=nf>product</span><span class=p>(</span><span class=s>free</span><span class=p>,</span> <span class=mi>0</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=nf>purchase</span><span class=p>(</span><span class=s>alice</span><span class=p>,</span> <span class=s>pro</span><span class=p>,</span> <span class=mi>5</span><span class=p>).</span>  <span class=c1>% Alice bought Pro 5 times</span>
+</span></span></code></pre></div><p><strong>Step 2: Write rules (your logic)</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-prolog data-lang=prolog><span class=line><span class=cl><span class=c1>% Your rules</span>
+</span></span><span class=line><span class=cl><span class=nf>is_power_user</span><span class=p>(</span><span class=nv>Customer</span><span class=p>)</span> <span class=p>:-</span> <span class=nf>purchase</span><span class=p>(</span><span class=nv>Customer</span><span class=p>,</span> <span class=k>_</span><span class=p>,</span> <span class=nv>Times</span><span class=p>),</span> <span class=nv>Times</span> <span class=o>&gt;</span> <span class=mf>3.</span>
+</span></span><span class=line><span class=cl><span class=nf>can_upgrade</span><span class=p>(</span><span class=nv>Customer</span><span class=p>)</span> <span class=p>:-</span> 
+</span></span><span class=line><span class=cl>    <span class=nf>customer</span><span class=p>(</span><span class=nv>Customer</span><span class=p>,</span> <span class=s>verified</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=nf>is_power_user</span><span class=p>(</span><span class=nv>Customer</span><span class=p>).</span>
+</span></span></code></pre></div><p><strong>Step 3: Query (ask questions)</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-prolog data-lang=prolog><span class=line><span class=cl><span class=s>?-</span> <span class=nf>can_upgrade</span><span class=p>(</span><span class=s>alice</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=s>true</span><span class=p>.</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=s>?-</span> <span class=nf>can_upgrade</span><span class=p>(</span><span class=s>bob</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=s>false</span><span class=p>.</span>
+</span></span></code></pre></div><h2 id=tools>Tools</h2><p><strong>Prolog:</strong> SWI-Prolog (free, open source)</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt-get install swi-prolog
+</span></span><span class=line><span class=cl>swipl
+</span></span><span class=line><span class=cl>?- consult<span class=o>(</span><span class=s1>&#39;rules.pl&#39;</span><span class=o>)</span>.  % Load your rules
+</span></span></code></pre></div><p><strong>Datalog:</strong> Souffle (fast, used in security tools)</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>brew install souffle
+</span></span><span class=line><span class=cl>souffle -o program rules.dl
+</span></span></code></pre></div><p><strong>Constraint solvers:</strong> OR-Tools (free, works with Python)</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>pip</span> <span class=n>install</span> <span class=n>ortools</span>
+</span></span></code></pre></div><h2 id=common-mistakes>Common mistakes</h2><h3 id=mistake-1-treating-logic-engines-as-smart>Mistake 1: Treating logic engines as smart</h3><p>They&rsquo;re not. They just follow rules you write.</p><pre tabindex=0><code>Bad logic: &#34;If the customer is verified AND has spent &gt; $1k, approve them&#34;
+Problem: What if they just spent that today and got verified yesterday?
+
+Good logic: &#34;IF verified 30+ days ago AND spent $1k before verification THEN approve&#34;
+</code></pre><h3 id=mistake-2-not-handling-incomplete-information>Mistake 2: Not handling incomplete information</h3><pre tabindex=0><code>Bad rule: has_required_approvals(Loan) :- loan_approved_by(Loan, Manager1), loan_approved_by(Loan, Manager2).
+Problem: If you only have 1 approval, this returns false (good), but the system crashes if the data is incomplete
+
+Good rule: 
+count_approvals(Loan, Count) :- Count = count(Manager | loan_approved_by(Loan, Manager)).
+has_required_approvals(Loan) :- 
+    requires_two_approvals(Loan), 
+    count_approvals(Loan, Count), 
+    Count &gt;= 2.
+</code></pre><h3 id=mistake-3-over-specifying-rules>Mistake 3: Over-specifying rules</h3><p>Start simple, add complexity as needed.</p><pre tabindex=0><code>Bad: 
+rule(Tx) :- transaction_amount &gt; 1000, 
+            customer_aml_verified, 
+            NOT in_high_risk_country,
+            NOT on_sanctions_list,
+            NOT has_recent_fraud_claim,
+            account_age &gt; 30,
+            previous_transactions &gt; 5,
+            ... (20 more conditions)
+
+Good: 
+high_risk(Tx) :- transaction_amount &gt; 100000, in_high_risk_country.
+high_risk(Tx) :- on_sanctions_list.
+requires_review(Tx) :- high_risk(Tx).
+requires_review(Tx) :- NOT customer_aml_verified.
+</code></pre><h2 id=the-bridge-to-production-systems>The bridge to production systems</h2><p>This post covered reasoning engines as a standalone tool. The next post shows how to combine them with agents and graphs in a production system:</p><ul><li><strong>This post:</strong> Logic engines verify correctness</li><li><strong>Next post:</strong> Integrate with agents, graphs, LLMs in production</li><li><strong>Final post:</strong> Case studies and what comes next</li></ul><h2 id=the-takeaway>The takeaway</h2><p>Logic engines aren&rsquo;t replacements for LLMs. They&rsquo;re complements. Use them for:</p><ol><li><strong>Verification:</strong> &ldquo;Does this decision comply with all rules?&rdquo;</li><li><strong>Constraint solving:</strong> &ldquo;Find the best assignment given constraints&rdquo;</li><li><strong>Explainability:</strong> &ldquo;Here&rsquo;s the exact rule that led to this decision&rdquo;</li></ol><p>LLMs are great at reasoning. Logic engines are great at verification. Together, they&rsquo;re stronger than either alone.</p><p><strong>Next in this series:</strong> <a href=/post/2025/09/neuro-symbolic-agents-production/>Neuro-Symbolic Agents in Production: Constraint Solvers, Rule Engines, and LLM Planners</a></p></article></div><div class="column is-hidden-mobile"><div class="sidebar pl-4" id=toc><div class="post post-toc" id=post-toc></div></div></div></div></div></section></div><footer class=footer><div class="content has-text-centered">Copyright © 2024-2025 Dinesh Blog. All rights reserved.</p></div></footer><script src=https://dineshkuppan.dev/js/pwa.min.js></script><script src=https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js></script><script src=https://dineshkuppan.dev/js/hulga.min.js defer></script><link id=hlcss rel=stylesheet href=/css/monokai.min.css type=text/css><script src=https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js></script><script>anchors.options={placement:"left",icon:"#"},anchors.add(".content h1, .content h2, .content h3")</script><link rel=stylesheet type=text/css href=https://dineshkuppan.dev/css/toc.min.css><script src=https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.js></script><script>tocbot.init({tocSelector:".post-toc",contentSelector:"#post-content",headingSelector:"h1, h2, h3",collapseDepth:0,scrollSmooth:!0,positionFixedSelector:".post-toc",fixedSidebarOffset:273})</script></body></html>
