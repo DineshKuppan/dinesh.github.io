@@ -67,4 +67,4 @@ site/post/
 site/node_modules/
 
 # Build artifacts
-.cache
+.cachepublic/
