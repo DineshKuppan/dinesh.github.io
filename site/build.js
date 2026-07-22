@@ -74,7 +74,7 @@ const baseTemplate = `<!DOCTYPE html>
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 · Built with <a href="#">custom static generator</a></p>
+      <p>&copy; {{copyrightYear}} · Built with <a href="#">custom static generator</a></p>
       <a href="https://github.com/DineshKuppan/dinesh.github.io">GitHub</a>
     </div>
   </footer>
@@ -166,7 +166,58 @@ const catalogTemplate = `
   </div>
 </section>`;
 
-function buildIndex() {
+const aboutTemplate = `
+<section class="about">
+  <div class="about-header">
+    <h1>About Dinesh</h1>
+    <p>AI Engineer & Technical Writer</p>
+  </div>
+
+  <div class="about-intro">
+    <p>I build systems at the intersection of AI engineering and production software. This blog documents the journey from research to deployment.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Portfolio</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>Agentic AI Series</h3>
+        <p>13-post deep dive into agentic architectures, LLM building, and production deployment patterns.</p>
+        <span class="tech-tag">AI</span>
+        <span class="tech-tag">LLM</span>
+        <span class="tech-tag">Systems</span>
+      </div>
+      <div class="project-card">
+        <h3>Claude Code Guide</h3>
+        <p>Exploring advanced Claude Code workflows, MCP integrations, and multi-agent patterns.</p>
+        <span class="tech-tag">Claude</span>
+        <span class="tech-tag">Tools</span>
+        <span class="tech-tag">Productivity</span>
+      </div>
+      <div class="project-card">
+        <h3>Custom Static Generator</h3>
+        <p>This site runs on a custom Node.js static site generator, replacing Hugo with a 30ms build time.</p>
+        <span class="tech-tag">Node.js</span>
+        <span class="tech-tag">Performance</span>
+        <span class="tech-tag">Tooling</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-section">
+    <h2>Timeline</h2>
+    <div class="timeline">
+      {{timeline}}
+    </div>
+  </div>
+
+  <div class="about-section">
+    <h2>Get In Touch</h2>
+    <p>Interested in AI engineering, technical writing, or collaboration? Reach out on <a href="https://twitter.com">Twitter</a> or <a href="https://github.com">GitHub</a>.</p>
+  </div>
+</section>`;
+
+function buildIndex(copyrightYear) {
   const featured = posts.slice(0, 5);
   const featuredHTML = featured.map(post => {
     const dateFolder = post.date.slice(0, 7).replace('-', '/');
@@ -201,13 +252,14 @@ function buildIndex() {
     ogImage: '',
     extraHead: '',
     content: indexContent,
+    copyrightYear,
   });
 
   writeFile(path.join(__dirname, 'index.html'), html);
   console.log('✓ Built index.html');
 }
 
-function buildPosts() {
+function buildPosts(copyrightYear) {
   posts.forEach(post => {
     const dateFolder = post.date.slice(0, 7).replace('-', '/');
     const postPath = path.join(__dirname, 'post', dateFolder, post.slug, 'index.html');
@@ -257,6 +309,7 @@ function buildPosts() {
 <meta name="article:section" content="${post.category}">
 ${post.tags.map(tag => `<meta name="article:tag" content="${tag}">`).join('\n')}`,
       content: postContent,
+      copyrightYear,
     });
 
     writeFile(postPath, html);
@@ -265,7 +318,7 @@ ${post.tags.map(tag => `<meta name="article:tag" content="${tag}">`).join('\n')}
   console.log(`✓ Built ${posts.length} post pages`);
 }
 
-function buildCatalog() {
+function buildCatalog(copyrightYear) {
   const categoryFilters = [
     ...new Set(posts.map(p => p.category)),
   ]
@@ -303,13 +356,14 @@ function buildCatalog() {
     ogType: 'website',
     extraHead: '',
     content: catalogContent,
+    copyrightYear,
   });
 
   writeFile(path.join(__dirname, 'catalog.html'), html);
   console.log('✓ Built catalog.html');
 }
 
-function build404() {
+function build404(copyrightYear) {
   const html = renderTemplate(baseTemplate, {
     title: '404 - Not Found',
     description: 'Page not found',
@@ -323,6 +377,7 @@ function build404() {
         <a href="/" class="btn-primary">Back to Home</a>
       </section>
     `,
+    copyrightYear,
   });
 
   writeFile(path.join(__dirname, '404.html'), html);
@@ -361,12 +416,48 @@ Sitemap: https://dineshkuppan.dev/sitemap.xml
   console.log('✓ Built robots.txt');
 }
 
+function buildAbout() {
+  const timeline = [
+    { year: '2024', event: 'Deep dive into Agentic AI architectures' },
+    { year: '2025', event: 'Started blogging on AI engineering patterns' },
+    { year: '2026', event: 'Migrated blog to custom static generator' },
+  ]
+    .map(item => `<div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <span class="timeline-year">${item.year}</span>
+        <p>${item.event}</p>
+      </div>
+    </div>`)
+    .join('\n');
+
+  const aboutContent = renderTemplate(aboutTemplate, {
+    timeline,
+  });
+
+  const html = renderTemplate(baseTemplate, {
+    title: 'About - Dinesh Kuppan',
+    description: 'AI Engineer and Technical Writer',
+    url: '/about/',
+    ogType: 'website',
+    extraHead: '',
+    content: aboutContent,
+    copyrightYear: new Date().getFullYear(),
+  });
+
+  writeFile(path.join(__dirname, 'about.html'), html);
+  console.log('✓ Built about.html');
+}
+
 console.log('🔨 Building site...\n');
 
-buildIndex();
-buildPosts();
-buildCatalog();
-build404();
+const copyrightYear = new Date().getFullYear();
+
+buildIndex(copyrightYear);
+buildPosts(copyrightYear);
+buildCatalog(copyrightYear);
+buildAbout(copyrightYear);
+build404(copyrightYear);
 buildSitemap();
 buildRobotsTxt();
 
