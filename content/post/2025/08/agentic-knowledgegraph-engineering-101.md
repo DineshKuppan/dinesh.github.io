@@ -1,6 +1,6 @@
 ---
 title: "Agentic KnowledgeGraph Engineering 101: From Schema to Reasoning"
-date: 2025-08-26T09:00:00+05:30
+date: 2026-06-08T09:00:00+05:30
 description: "Building AI agents that reason over knowledge graphs. Concrete patterns for agentic decision-making."
 tags: [agents, knowledge-graphs, agentic-ai, reasoning]
 categories: [Architecture, Advanced]

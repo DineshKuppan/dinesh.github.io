@@ -1,6 +1,6 @@
 ---
 title: "Reasoning Engines: Combining Logic Programming (Prolog/Datalog) with LLM Inference"
-date: 2025-08-30T09:00:00+05:30
+date: 2026-06-22T09:00:00+05:30
 description: "When LLMs aren't enough, add formal logic. Hybrid reasoning for problems that need provable correctness."
 tags: [reasoning, prolog, datalog, logic-programming, formal-verification]
 categories: [Advanced, Architecture]

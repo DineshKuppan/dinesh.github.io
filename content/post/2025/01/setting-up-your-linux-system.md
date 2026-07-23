@@ -1,9 +1,11 @@
 ---
 title: "Setting Up Your Linux System: A Step-by-Step Guide"
-date: 2025-01-12T02:01:58+05:30
+date: 2026-03-09T09:00:00+05:30
 description: "Getting started with Linux involves several steps. In this guide we will walk you through each step to ensure your system is set up properly with all necessary packages and dependencies."
 tags: [guide, tutorial]
 categories: ["setup", "linux", "productivity"]
+slug: setting-up-your-linux-system
+estimated_read_time: 8 minutes
 ---
 
 ## Introduction

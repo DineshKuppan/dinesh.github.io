@@ -1,6 +1,6 @@
 ---
 title: "Knowledge Graphs as the Symbolic Backbone: Where Neo4j Meets LLMs"
-date: 2025-08-22T09:00:00+05:30
+date: 2026-05-25T09:00:00+05:30
 description: "Building knowledge graphs for AI reasoning. From schema design to querying with LLMs."
 tags: [knowledge-graphs, neo4j, graph-databases, llm-reasoning]
 categories: [Architecture, Databases]

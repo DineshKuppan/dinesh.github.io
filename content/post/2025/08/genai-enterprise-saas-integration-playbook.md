@@ -1,6 +1,6 @@
 ---
 title: "GenAI in the Enterprise SaaS Ecosystem: A Staff Engineer's Integration Playbook"
-date: 2025-08-06T09:00:00+05:30
+date: 2026-04-27T09:00:00+05:30
 description: "How to ship AI features without burning infrastructure budget. Models, guardrails, costs, and the patterns that actually work at scale."
 tags: [saas, enterprise, genai, infrastructure, patterns]
 categories: [Enterprise, Architecture]

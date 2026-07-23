@@ -1,6 +1,6 @@
 ---
 title: "Claude Code Mastery: Skills, Plugins, Daily Staff-Engineer Workflows"
-date: 2025-08-10T09:00:00+05:30
+date: 2026-05-04T09:00:00+05:30
 description: "Using Claude Code as your development partner. Skills, custom plugins, loops, and shipping faster."
 tags: [claude-code, developer-tools, productivity, automation, ai-workflow]
 categories: [Tools, Productivity]

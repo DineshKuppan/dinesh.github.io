@@ -1,6 +1,6 @@
 ---
 title: "What Is Neuro-Symbolic AI, and Why Now"
-date: 2025-08-18T09:00:00+05:30
+date: 2026-05-18T09:00:00+05:30
 description: "The convergence of neural networks and symbolic reasoning. Why pure LLMs hit a ceiling and how to combine both."
 tags: [neuro-symbolic, reasoning, knowledge-graphs, ai-architecture]
 categories: [AI, Advanced]
