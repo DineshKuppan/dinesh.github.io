@@ -4,10 +4,10 @@ description: "A practical guide to measuring developer experience using friction
 image: /img/dora-metrics.png
 tags: [developer experience, metrics, Apache DevLake, platform engineering]
 categories: [Developer Experience, Metrics, Engineering, DevLake]
-date: 2025-08-27T11:44:32+05:30
+date: 2026-06-15T09:00:00+05:30
 slug: developer-experience-metrics-devlake
 estimated_read_time: 9 minutes
-last_validated: August 2025
+last_validated: June 2026
 ---
 
 # Measuring Developer Experience: From Friction Logs to Dashboards

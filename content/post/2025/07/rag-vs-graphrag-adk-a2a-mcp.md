@@ -1,6 +1,6 @@
 ---
 title: "RAG vs GraphRAG vs ADK/A2A/MCP: Architecture Choices for Agentic Systems"
-date: 2025-08-02T09:00:00+05:30
+date: 2026-04-20T09:00:00+05:30
 description: "How to ground LLMs in your data. When to use RAG, when to use graphs, when to reach for agents and tool protocols."
 tags: [rag, graphrag, agents, architecture, llm-grounding]
 categories: [Architecture, AI]

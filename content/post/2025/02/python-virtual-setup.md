@@ -1,8 +1,11 @@
 ---
 title: "Python Virtual Environment Setup Guides"
-date: 2025-02-15T18:34:27+05:30
+date: 2026-03-16T09:00:00+05:30
 description: "This page explains how to create and manage Python virtual environments across Linux, Unix, macOS, and Windows. Virtual environments isolate dependencies for each project, preventing version conflicts."
 tags: [python, development, guide, virtual-environment]
+categories: [Development, Python]
+slug: python-virtual-setup
+estimated_read_time: 8 minutes
 ---
 
 ## Python Virtual Environment Setup Guides

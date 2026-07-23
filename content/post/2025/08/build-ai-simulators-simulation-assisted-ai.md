@@ -1,6 +1,6 @@
 ---
 title: "Build AI Simulators: Simulation-Assisted AI vs AI-Assisted Simulation"
-date: 2025-08-14T09:00:00+05:30
+date: 2026-05-11T09:00:00+05:30
 description: "When reality is too expensive to test. How to verify AI reasoning and decision-making in simulation."
 tags: [simulation, ai-testing, verification, ai-agents]
 categories: [Testing, AI]

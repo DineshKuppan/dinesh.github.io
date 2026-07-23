@@ -9,7 +9,8 @@ export class CommandPalette {
 
   async init() {
     try {
-      const response = await fetch('/catalog.html');
+      const response = await fetch('/catalog/');
+      if (!response.ok) throw new Error(`Catalog request failed: ${response.status}`);
       const html = await response.text();
       this.extractPosts(html);
       this.createUI();

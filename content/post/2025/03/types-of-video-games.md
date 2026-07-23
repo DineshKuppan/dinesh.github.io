@@ -1,9 +1,11 @@
 ---
 title: "Types of Gaming Terminologies: Genres & Descriptions"
-date: 2025-03-21T14:54:27+05:30
+date: 2026-03-23T09:00:00+05:30
 description: "Discover the wide variety of video game genres, from immersive role-playing adventures to fast-paced shooters. This guide provides an overview of each major type of game, their key features, and what makes them unique."
 tags: [games, gaming, guide]
 categories: ["general"]
+slug: types-of-video-games
+estimated_read_time: 10 minutes
 ---
 
 ## Types of Video Games: Genres & Descriptions

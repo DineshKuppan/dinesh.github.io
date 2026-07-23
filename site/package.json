@@ -5,8 +5,8 @@
   "description": "Dinesh Kuppan's blog - AI Engineering Series",
   "scripts": {
     "build": "node build.js",
-    "dev": "node build.js && chokidar 'data.js' 'build.js' -c 'npm run build' & http-server . -p 8080 -o",
-    "watch": "chokidar 'data.js' 'build.js' -c 'npm run build'",
+    "dev": "node build.js && chokidar '../content/post/**/*.md' 'content-loader.js' 'build.js' -c 'npm run build' & http-server . -p 8080 -o",
+    "watch": "chokidar '../content/post/**/*.md' 'content-loader.js' 'build.js' -c 'npm run build'",
     "serve": "http-server . -p 8080 -o"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 ---
 title: "Neuro-Symbolic Agents in Production: Constraint Solvers, Rule Engines, and LLM Planners"
-date: 2025-09-03T09:00:00+05:30
+date: 2026-06-29T09:00:00+05:30
 description: "Shipping neuro-symbolic systems at scale. Deployment patterns, monitoring, and handling failures."
 tags: [production, deployment, monitoring, neuro-symbolic, patterns]
 categories: [Production, Architecture]

@@ -1,10 +1,13 @@
 ---
 title: "AI Use Case vs GenAI Use Case: How We Draw the Line"
-date: 2025-08-23T16:29:00+05:30
+date: 2026-06-01T09:00:00+05:30
 description: "Explore how engineering teams distinguish between traditional AI use cases and the emerging wave of Generative AI use cases, with real-world examples and practical categorization tips from hands-on system design debates."
 image: /img/AI_vs_GenAI.png
 tags: [AI, generative ai, machine learning, engineering, guide]
 categories: ["GenerativeAI", "Machine Learning", "Engineering", "GenAI"]
+slug: ai-use-case-vs-genai-use-case
+estimated_read_time: 8 minutes
+last_validated: June 2026
 ---
 
 ## AI vs GenAI Debate

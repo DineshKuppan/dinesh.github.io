@@ -1,6 +1,6 @@
 ---
 title: "AI → GenAI: The Real Shift"
-date: 2025-07-21T09:00:00+05:30
+date: 2026-03-30T09:00:00+05:30
 description: "Why calling GenAI just 'AI' misses what actually changed. The discontinuity that matters for your next system."
 tags: [ai, genai, fundamentals, transformers, llm]
 categories: [AI, Fundamentals]
@@ -104,4 +104,4 @@ GenAI isn't "AI, but with better PR." It's what happens when you combine self-su
 
 That's a real discontinuity in how you build systems — worth taking seriously whether you're the one hyping it or the one rolling your eyes at the hype.
 
-**Next in this series:** [Building LLMs from Scratch: Decoder-Only Transformers & DeepSeek R1](/post/2025/07/building-llms-from-scratch-decoder-only-deepseek-r1/)
+**Next in this series:** [Building LLMs from Scratch: Decoder-Only Transformers & DeepSeek R1](/post/2026/04/building-llms-from-scratch-decoder-only-deepseek-r1/)

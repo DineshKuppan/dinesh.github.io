@@ -1,6 +1,6 @@
 ---
 title: "The Road Ahead: Neuro-Symbolic AI for Enterprise Reasoning Systems"
-date: 2025-09-07T09:00:00+05:30
+date: 2026-07-06T09:00:00+05:30
 description: "Enterprise adoption of neuro-symbolic AI. Case studies, challenges, and what's next."
 tags: [enterprise, neuro-symbolic, future, ai-systems, strategy]
 categories: [Enterprise, Future]

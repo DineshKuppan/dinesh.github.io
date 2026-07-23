@@ -1,9 +1,11 @@
 ---
 title: "Git Setup: First Time Configuration Guide"
-date: 2024-12-22T01:53:00+05:30
+date: 2026-03-02T09:00:00+05:30
 description: "A comprehensive guide to setting up Git for the first time, including user configuration and essential setup steps for developers."
 tags: [git, setup, development, guide]
 categories: ["setup", "git", "productivity", "development"]
+slug: github-setup
+estimated_read_time: 7 minutes
 ---
 
 ## Git Setup (First Time)

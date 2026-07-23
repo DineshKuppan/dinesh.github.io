@@ -1,13 +1,13 @@
 ---
 title: "My Local AI Research Stack: Ollama + Obsidian + Perplexity"
-date: 2025-07-29T09:00:00+05:30
+date: 2026-06-13T09:00:00+05:30
 description: "Running LLMs locally without cloud bills. Stack for knowledge management, research, and AI-assisted learning."
 tags: [ollama, local-llm, productivity, research-tools, ai]
 categories: [Tools, Productivity]
 series: "Agentic AI & Neuro-Symbolic AI"
 slug: my-local-ai-research-stack-ollama-obsidian-perplexity
-estimated_read_time: 9 minutes
-last_validated: March 2026
+estimated_read_time: 10 minutes
+last_validated: June 2026
 ---
 
 ## You're bleeding $200/month on API calls and your research notes are scattered across five apps
@@ -21,6 +21,36 @@ This problem doesn't have to be expensive or chaotic.
 ## The stack: Ollama + Obsidian + Perplexity
 
 I'm not advocating for a "one true stack" — pick what fits your workflow. But this combination solves three separate problems: local inference, knowledge capture, and web-aware context.
+
+## Special note: My current research setup
+
+My current machine uses an **RTX 4060 OC with 8GB of VRAM**. That hardware budget shapes the workflow: I use **Ollama with DeepSeek R1 7B** for focused local reasoning, **Obsidian** as the durable research memory, and **Perplexity Pro** when the task needs current web evidence or substantially more context than I want to keep in GPU memory.
+
+For local work, I deliberately use a predefined **8,192-token context window**. It is large enough for a focused note, a paper section, code, or a compact bundle of related Obsidian notes, while leaving practical headroom on an 8GB GPU. Increasing context is not free: the model's key-value cache grows with the conversation, consuming more memory and reducing responsiveness. The exact limit a machine can sustain also depends on quantization, prompt size, and what else is using VRAM.
+
+I keep the local configuration explicit instead of depending on a changing default:
+
+```text
+FROM deepseek-r1:7b
+PARAMETER num_ctx 8192
+```
+
+Save that as a `Modelfile`, then create and run the research profile:
+
+```bash
+ollama pull deepseek-r1:7b
+ollama create deepseek-r1-research -f Modelfile
+ollama run deepseek-r1-research
+```
+
+The operating rule is simple:
+
+- **Use DeepSeek R1 7B locally** for private notes, repeated questioning, drafting, summarization, and reasoning that fits inside the predefined context.
+- **Use Obsidian** to preserve conclusions, source links, and compact summaries so every new local prompt does not need the entire research history.
+- **Use Perplexity Pro with a 200K context option** when comparing many papers, long reports, or a larger source collection.
+- **Use a 1M context option when available in the selected Pro model or research mode** for exceptionally large corpora. Even then, retrieve and organize only the relevant material instead of treating a huge context window as permanent memory.
+
+This creates a practical escalation path: start local and private, compress useful findings into Obsidian, and move to Perplexity only when fresh sources or a much larger evidence window materially improves the research.
 
 ### Ollama: Models run locally
 
@@ -128,7 +158,7 @@ and answers at the right depth.
 
 ### Mistake 3: Confusing local-only with search-enabled
 
-Your local model doesn't know today's date or recent news. If you ask "what happened in March 2026," it'll confabulate. Use Perplexity for that.
+Your local model doesn't know today's date or recent news. If you ask "what happened in June 2026," it'll confabulate. Use Perplexity for that.
 
 ## The cost math
 

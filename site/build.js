@@ -3,10 +3,11 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { posts, collections, stats } from './data.js';
+import { loadPosts } from './content-loader.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const START = Date.now();
+const posts = await loadPosts();
 
 function ensureDir(dir) {
   if (!fs.existsSync(dir)) {
@@ -16,8 +17,12 @@ function ensureDir(dir) {
 
 function writeFile(filepath, content) {
   ensureDir(path.dirname(filepath));
-  fs.writeFileSync(filepath, content, 'utf-8');
+  fs.writeFileSync(filepath, content.replace(/[ \t]+$/gm, ''), 'utf-8');
   return filepath;
+}
+
+function resetGeneratedRoutes() {
+  fs.rmSync(path.join(__dirname, 'post'), { recursive: true, force: true });
 }
 
 function renderTemplate(template, vars) {
@@ -87,7 +92,7 @@ const baseTemplate = `<!DOCTYPE html>
 const indexTemplate = `
 <section class="hero">
   <h1>Agentic AI & Neuro-Symbolic AI</h1>
-  <p>A comprehensive series exploring the future of artificial intelligence through practical engineering.</p>
+  <p>Practical engineering notes on AI, developer tooling, Linux, Python, gaming, and production systems.</p>
   <div class="stats">
     <div class="stat">
       <span class="number">{{postCount}}</span>
@@ -105,12 +110,15 @@ const indexTemplate = `
   <div class="post-grid">
     {{featuredPosts}}
   </div>
-  <a href="/catalog/" class="btn-primary">View All Posts</a>
+  <a href="catalog/index.html" class="btn-primary">View All Posts</a>
 </section>
 `;
 
 const postCardTemplate = `
 <article class="post-card">
+  <a href="/post/{{dateFolder}}/{{slug}}/" class="post-card-image" tabindex="-1" aria-hidden="true">
+    <img src="{{image}}" alt="" loading="lazy" width="1672" height="941">
+  </a>
   <header>
     <a href="/post/{{dateFolder}}/{{slug}}/" class="post-link">
       <h3>{{title}}</h3>
@@ -138,6 +146,11 @@ const postTemplate = `
     </div>
   </header>
 
+  <figure class="post-hero">
+    <img src="{{image}}" alt="{{imageAlt}}" width="1672" height="941" fetchpriority="high">
+    <figcaption>{{imageCaption}}</figcaption>
+  </figure>
+
   <div class="post-content">
     {{body}}
   </div>
@@ -154,7 +167,7 @@ const catalogTemplate = `
 <section class="catalog">
   <header>
     <h1>Blog Catalog</h1>
-    <p>All posts in the Agentic AI & Neuro-Symbolic AI series</p>
+    <p>Every article from the canonical content library, rendered in full.</p>
     <div class="filters">
       <button class="filter-btn active" data-filter="all">All Posts</button>
       {{categoryFilters}}
@@ -182,7 +195,7 @@ const aboutTemplate = `
     <div class="project-grid">
       <div class="project-card">
         <h3>Agentic AI Series</h3>
-        <p>13-post deep dive into agentic architectures, LLM building, and production deployment patterns.</p>
+        <p>A deep dive into agentic architectures, LLM building, and production deployment patterns.</p>
         <span class="tech-tag">AI</span>
         <span class="tech-tag">LLM</span>
         <span class="tech-tag">Systems</span>
@@ -229,6 +242,7 @@ function buildIndex(copyrightYear) {
       formattedDate: formatDate(post.date),
       category: post.category,
       description: post.description,
+      image: `/images/posts/${post.slug}.png`,
       readTime: post.readTime || 5,
       tags: (post.tags || [])
         .map(tag => `<a href="/catalog/?tag=${tag}" class="tag">${tag}</a>`)
@@ -246,7 +260,7 @@ function buildIndex(copyrightYear) {
 
   const html = renderTemplate(baseTemplate, {
     title: 'Dinesh Kuppan',
-    description: 'Agentic AI & Neuro-Symbolic AI series: comprehensive guide to the future of AI',
+    description: 'Engineering articles on AI systems, developer tooling, Linux, Python, and practical software architecture',
     url: '/',
     ogType: 'website',
     ogImage: '',
@@ -294,6 +308,9 @@ function buildPosts(copyrightYear) {
       formattedDate: formatDate(post.date),
       readTime: post.readTime || 5,
       series: post.series ? `<span class="series">${post.series}</span>` : '',
+      image: `/images/posts/${post.slug}.png`,
+      imageAlt: `Conceptual diagram explaining ${post.title}`,
+      imageCaption: post.description,
       body: post.body,
       prevPost: prevHTML,
       nextPost: nextHTML,
@@ -304,7 +321,9 @@ function buildPosts(copyrightYear) {
       description: post.description,
       url: `/post/${dateFolder}/${post.slug}/`,
       ogType: 'article',
-      ogImage: '',
+      ogImage: `<meta property="og:image" content="https://dineshkuppan.dev/images/posts/${post.slug}.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dineshkuppan.dev/images/posts/${post.slug}.png">`,
       extraHead: `<meta name="article:published_time" content="${post.date}">
 <meta name="article:section" content="${post.category}">
 ${post.tags.map(tag => `<meta name="article:tag" content="${tag}">`).join('\n')}`,
@@ -336,6 +355,7 @@ function buildCatalog(copyrightYear) {
         formattedDate: formatDate(post.date),
         category: post.category,
         description: post.description,
+        image: `/images/posts/${post.slug}.png`,
         readTime: post.readTime || 5,
         tags: (post.tags || [])
           .map(tag => `<a href="/catalog/?tag=${tag}" class="tag">${tag}</a>`)
@@ -351,16 +371,17 @@ function buildCatalog(copyrightYear) {
 
   const html = renderTemplate(baseTemplate, {
     title: 'Blog Catalog - Dinesh Kuppan',
-    description: 'Browse all blog posts on Agentic AI and Neuro-Symbolic AI',
+    description: 'Browse all engineering, AI, developer tooling, Linux, Python, and gaming articles by Dinesh Kuppan',
     url: '/catalog/',
     ogType: 'website',
+    ogImage: '',
     extraHead: '',
     content: catalogContent,
     copyrightYear,
   });
 
-  writeFile(path.join(__dirname, 'catalog.html'), html);
-  console.log('✓ Built catalog.html');
+  writeFile(path.join(__dirname, 'catalog', 'index.html'), html);
+  console.log('✓ Built catalog/index.html');
 }
 
 function build404(copyrightYear) {
@@ -369,6 +390,7 @@ function build404(copyrightYear) {
     description: 'Page not found',
     url: '/404.html',
     ogType: 'website',
+    ogImage: '',
     extraHead: '<meta name="robots" content="noindex">',
     content: `
       <section class="error-page">
@@ -440,19 +462,21 @@ function buildAbout() {
     description: 'AI Engineer and Technical Writer',
     url: '/about/',
     ogType: 'website',
+    ogImage: '',
     extraHead: '',
     content: aboutContent,
     copyrightYear: new Date().getFullYear(),
   });
 
-  writeFile(path.join(__dirname, 'about.html'), html);
-  console.log('✓ Built about.html');
+  writeFile(path.join(__dirname, 'about', 'index.html'), html);
+  console.log('✓ Built about/index.html');
 }
 
 console.log('🔨 Building site...\n');
 
 const copyrightYear = new Date().getFullYear();
 
+resetGeneratedRoutes();
 buildIndex(copyrightYear);
 buildPosts(copyrightYear);
 buildCatalog(copyrightYear);
