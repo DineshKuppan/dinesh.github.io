@@ -17,15 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: https://dineshkuppan.dev
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -40,23 +34,37 @@ jobs:
       - name: Build site
         run: cd site && npm run build
 
-      - name: Copy built site to root for deployment
+      - name: Stage publishable files
         run: |
-          mkdir -p public
-          cp -r site/index.html site/catalog.html site/404.html site/about.html site/*.xml site/*.txt site/post public/ 2>/dev/null || true
-          cp site/style.css site/*.js public/ 2>/dev/null || true
-          mkdir -p public/assets
-          cp -r site/assets/* public/assets/ 2>/dev/null || true
+          mkdir -p _site
+          rsync -a \
+            --exclude node_modules \
+            --exclude 'package*.json' \
+            --exclude build.js \
+            --exclude content-loader.js \
+            site/ _site/
+          cp CNAME _site/CNAME
+          touch _site/.nojekyll
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Verify build
+        run: |
+          test -f _site/index.html
+          test -f _site/404.html
+          test -d _site/post
+          echo "Posts: $(find _site/post -name index.html | wc -l)"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          force_orphan: true
+          path: _site
 
-      - name: Build summary
-        run: |
-          echo "✅ Build successful"
-          echo "📊 Output directory: site/"
-          echo "🌐 Live at: https://dineshkuppan.dev"
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
